@@ -1,29 +1,27 @@
-// //create class Worker
-// class Worker {
-//     constructor(name, surname, rate, days){
-//         this.name = name;
-//         this.surname = surname;
-//         this.rate = rate;
-//         this.days = days;
-//     }
-//     getSalary(){
-//         console.log(this.rate * this.days)
-//     }
-// }
-// //create instance
-// var worker = new Worker('Иван', 'Иванов', 10, 31);
+//create class Worker
+class Worker {
+    constructor(name, surname, rate, days){
+        this.name = name;
+        this.surname = surname;
+        this.rate = rate;
+        this.days = days;
+    }
+    getSalary(){
+    console.log(this.rate * this.days)
+    }
+}
+//create instance
+var worker = new Worker('Иван', 'Иванов', 10, 31);
 
-// console.log(worker.name); //выведет 'Иван'
-// console.log(worker.surname); //выведет 'Иванов'
-// console.log(worker.rate); //выведет 10
-// console.log(worker.days); //выведет 31
-// worker.getSalary(); //выведет 310 — то есть 10*31
-
+console.log(worker.name); //выведет 'Иван'
+console.log(worker.surname); //выведет 'Иванов'
+console.log(worker.rate); //выведет 10
+console.log(worker.days); //выведет 31
+worker.getSalary(); //выведет 310 — то есть 10*31
 
 
 
 //код, который отвечает за отображение на сайте информации о транспорте и цене.
-
 //массив данных
 const data = [
     {
@@ -79,7 +77,7 @@ const servicediv = document.querySelector('.servicediv');
 
 //создание дочернего класса CAR
 class Car extends Transport {
-    static type = 'CAR'
+    // static type = 'CAR'
     constructor(options){
         super(options)
         this.doors = options.doors
@@ -89,23 +87,7 @@ class Car extends Transport {
     getDoorsCount(){
         return this.doors
     }
-
-    static createItem() {
-        console.log('carItem');
-        let card = document.createElement('div');
-        card.className = 'transport__item';
-        card.innerHTML = `
-        <div class="item__image_container">
-          <img class="item__img" src="${this.image}" alt="${this.brand}">
-        </div>
-        <p>тип транспорта: ${this.type}</p>
-        <p>марка: ${this.brand}</p>
-        <p>кол-во дверей: ${this.doors}</p>
-        <p>цена: ${this.price} руб.</p>
-        `
-        servicediv.after(card);
-    }
-} 
+};
 
 //создание дочернего класса BIKE
 class Bike extends Transport {
@@ -119,41 +101,52 @@ class Bike extends Transport {
     getMaxSpeed(){
         return this.maxSpeed
     }
-    static createItem() {
-        console.log('bikeItem')
-        let card = document.createElement('div');
-        card.className = 'transport__item';
-        card.innerHTML = `
-        <div class="item__image_container">
-          <img class="item__img" src="${this.image}" alt="${this.brand}">
-        </div>
-        <p>тип транспорта: ${this.type}</p>
-        <p>марка: ${this.brand}</p>
-        <p>макс. скорость: ${this.maxSpeed}</p>
-        <p>цена: ${this.price} руб.</p>
-        `
-        servicediv.after(card);
-    }
+    
 }
 
-//создаем классы изи дата-массива
+//создаем классы из дата-массива
 for (let i = 0; i < data.length; i++) {
 
         function newcar() {
-        const car = new Car({type: data[i].type, brand: data[i].brand, doors: data[i].doors, price: data[i].price, image: data[i].image,});
-        console.log(car)};
+          const car = new Car ({type: data[i].type, brand: data[i].brand, doors: data[i].doors, price: data[i].price, image: data[i].image,});
+          createCarItem = () => {
+            let card = document.createElement('div');
+            card.className = 'transport__item';
+            card.innerHTML = `
+            <div class="item__image_container">
+             <img class="item__img" src="${car.image}" alt="${car.brand}">
+            </div>
+            <p>тип транспорта: ${car.type}</p>
+            <p>марка: ${car.brand}</p>
+            <p>кол-во дверей: ${car.doors}</p>
+            <p>цена: ${car.price} руб.</p>`;
+            servicediv.before(card);
+          };
+      };
 
         function newbike() {
         const bike = new Bike({ type: data[i].type, brand: data[i].brand, maxSpeed: data[i].maxSpeed, price: data[i].price, image: data[i].image,});
-        console.log(bike)};
+        createBikeItem = () => {
+          let card = document.createElement('div');
+          card.className = 'transport__item';
+          card.innerHTML = `
+          <div class="item__image_container">
+           <img class="item__img" src="${bike.image}" alt="${bike.brand}">
+          </div>
+          <p>тип транспорта: ${bike.type}</p>
+          <p>марка: ${bike.brand}</p>
+          <p>макс. скорость: ${bike.maxSpeed}</p>
+          <p>цена: ${bike.price} руб.</p>`;
+          servicediv.before(card);
+        };
+      };
 
     if (data[i].type === "car") {
         newcar();
-        Car.createItem();
+        createCarItem();
     } else {
         newbike();
-        Bike.createItem();
+        createBikeItem(); 
     };
-    
 }
 
