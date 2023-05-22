@@ -64,7 +64,6 @@ const servicediv = document.querySelector('.servicediv');
 
 //родительский класс TRANSPORT
   class Transport {
-    static type = 'TRANSPORT'
     constructor(options) {
         this.type = options.type;
         this.price = options.price;
@@ -77,7 +76,6 @@ const servicediv = document.querySelector('.servicediv');
 
 //создание дочернего класса CAR
 class Car extends Transport {
-    // static type = 'CAR'
     constructor(options){
         super(options)
         this.doors = options.doors
@@ -91,7 +89,6 @@ class Car extends Transport {
 
 //создание дочернего класса BIKE
 class Bike extends Transport {
-    static type = 'BIKE'
     constructor(options){
         super(options)
         this.maxSpeed = options.maxSpeed
