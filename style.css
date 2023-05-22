@@ -1,0 +1,28 @@
+.transpopt__wrapper{
+    background-color: yellow;
+    margin: auto;
+    width: 80%;
+}
+
+.transport__items{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+.transport__item{
+    border: 2px dashed #1f0344;
+    padding: 10px;
+    margin: 0 20px;
+    width: 150px;
+    height: 300px;
+}
+
+.item__image_container{
+    background-color: aquamarine;
+    width: 100%;
+    height: 100px;
+}
+
+.item__img{
+    width: 100%;
+}
