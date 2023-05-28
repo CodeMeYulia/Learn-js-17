@@ -59,7 +59,6 @@ const data = [
   ];
 
 //ПЕРЕМЕННЫЕ
-const cards = document.querySelector('.transort__items');  
 const servicediv = document.querySelector('.servicediv');
 
 //родительский класс TRANSPORT
